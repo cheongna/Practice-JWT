@@ -25,3 +25,8 @@ spring:
     view:
       prefix: /templates/
       suffix: .mustache
+
+  security:
+    user:
+      name: root
+      password: root
