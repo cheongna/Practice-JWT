@@ -1,5 +1,6 @@
 package com.ehgus973.security1.controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class IndexController {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public String index() {
@@ -47,7 +49,11 @@ public class IndexController {
     }
 
     @PostMapping("/join")
-    public void join(User user) {
+    public String join(User user) {
+        user.setRole("ROLE_USER");
+        String password = passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
         userRepository.save(user);
+        return "redirect:/loginForm";
     }
 }
