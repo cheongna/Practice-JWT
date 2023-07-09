@@ -15,10 +15,11 @@ public class SecurityConfig {
         http.csrf(c -> c.disable());
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/user/**").authenticated();
-            auth.requestMatchers("/manager/**").hasAnyRole("ROLE_ADMIN", "ROLE_MANAGER");
-            auth.requestMatchers("/admin/**").hasRole("ROLE_ADMIN");
+            auth.requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER");
+            auth.requestMatchers("/admin/**").hasRole("ADMIN");
             auth.anyRequest().permitAll();
         });
+        http.formLogin(form -> form.loginPage("/loginForm"));
         return http.build();
     }
 }
