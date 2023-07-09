@@ -47,7 +47,6 @@ public class IndexController {
     public String joinForm() {
         return "joinForm";
     }
-
     @PostMapping("/join")
     public String join(User user) {
         user.setRole("ROLE_USER");
