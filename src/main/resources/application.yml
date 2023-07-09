@@ -30,3 +30,9 @@ spring:
     user:
       name: root
       password: root
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 668088059884-hrpfchj3qh3ugupptr7meupbi5i8c951.apps.googleusercontent.com
+            client-secret: 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

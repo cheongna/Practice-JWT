@@ -1,5 +1,6 @@
 package com.ehgus973.security1.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,7 @@ public class IndexController {
     public String joinForm() {
         return "joinForm";
     }
+
     @PostMapping("/join")
     public String join(User user) {
         user.setRole("ROLE_USER");
@@ -54,5 +56,11 @@ public class IndexController {
         user.setPassword(password);
         userRepository.save(user);
         return "redirect:/loginForm";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/info")
+    public @ResponseBody String info() {
+        return "개인정보";
     }
 }
