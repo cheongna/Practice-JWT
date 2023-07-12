@@ -15,6 +15,9 @@ spring:
     password: root
 
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
     hibernate:
       ddl-auto: update
       naming:
@@ -34,5 +37,9 @@ spring:
       client:
         registration:
           google:
-            client-id: 668088059884-hrpfchj3qh3ugupptr7meupbi5i8c951.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 1084365769783-rtajot9n7nul1i4nql5orbap74a6cpd0.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+logging:
+  level:
+    root: debug
