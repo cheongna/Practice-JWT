@@ -3,6 +3,7 @@ package com.ehgus973.security1.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,7 @@ import com.ehgus973.security1.model.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Data
 public class PrincipalDetails implements UserDetails {
 
     private final User user;

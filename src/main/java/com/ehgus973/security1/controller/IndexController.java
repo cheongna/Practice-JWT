@@ -1,5 +1,6 @@
 package com.ehgus973.security1.controller;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ public class IndexController {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
     @GetMapping("/")
     public String index() {
         return "index";
