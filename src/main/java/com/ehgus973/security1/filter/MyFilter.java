@@ -15,7 +15,7 @@ public class MyFilter implements Filter {
         System.out.println("필터");
         HttpServletRequest HttpServletRequest = (jakarta.servlet.http.HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (jakarta.servlet.http.HttpServletResponse) servletResponse;
-        if(HttpServletRequest.getHeader("authorization").equals("cos")) {
+        if(HttpServletRequest.getHeader("authorization2").equals("cos")) {
             filterChain.doFilter(servletRequest, servletResponse);
         }else {
             PrintWriter out = servletResponse.getWriter();

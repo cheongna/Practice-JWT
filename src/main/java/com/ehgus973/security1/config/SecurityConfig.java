@@ -5,6 +5,8 @@ import com.ehgus973.security1.auth.PrincipalDetailsService;
 import com.ehgus973.security1.config.oauth2.PrincipalOauth2UserService;
 import com.ehgus973.security1.filter.MyFilter;
 import com.ehgus973.security1.jwt.JwtAuthenticationFilter;
+import com.ehgus973.security1.jwt.JwtAuthorizationFilter;
+import com.ehgus973.security1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,6 +44,7 @@ public class SecurityConfig {
     private final CorsConfig corsConfig;
     private final PrincipalOauth2UserService principalOauth2UserService;
     private final PrincipalDetailsService principalDetailsService;
+    private final  UserRepository userRepository;
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -51,6 +54,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(new MyFilter(), SecurityContextPersistenceFilter.class);
         http.addFilter(new JwtAuthenticationFilter(authenticationManager));
+        http.addFilter(new JwtAuthorizationFilter(authenticationManager, userRepository));
         http.csrf(c -> c.disable());
         http.cors(c -> c.disable());
         http.authorizeHttpRequests(auth -> {

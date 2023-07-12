@@ -16,10 +16,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -54,6 +52,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("id", principalDetails.getUser().getId())
                 .withClaim("username", principalDetails.getUser().getUsername())
                 .sign(Algorithm.HMAC256("cos"));
-        response.addHeader("Authorization", "Bearer " +jwtToken);
+        response.addHeader("Authorization", "Bearer " + jwtToken);
     }
 }
